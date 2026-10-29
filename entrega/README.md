@@ -12,14 +12,14 @@ Prof. Jorge Iván Padilla Buriticá). Resuelve las cuatro secciones del enunciad
 
 ## Archivos
 
-- **`Eval2_Apellido_Nombre.ipynb`** — Notebook plantilla, listo para ejecutar. **Antes de entregar,
-  reemplace** `STUDENT_NAME`, `STUDENT_ID` (su documento, solo dígitos) y `GROUP` en la celda de
-  *Datos*. De ahí se derivan `SEED` (últimos 4 dígitos) y `D` (último dígito), que fijan la semilla
-  global y el subconjunto de 10 imágenes de la Sección A.3.
+- **`Eval2_Apellido_Nombre.ipynb`** — Notebook plantilla. El `STUDENT_ID` ya termina en **1357**
+  (→ **SEED=1357, D=7**). **Antes de entregar,** complete `STUDENT_NAME` y `GROUP`, y ponga su
+  documento completo (los últimos 4 dígitos ya son los correctos; el resto no afecta a `SEED`/`D`).
+  De los últimos 4 dígitos se derivan `SEED` (semilla global) y `D` (define el subconjunto de 10
+  imágenes de la Sección A.3).
 - **`Eval2_Apellido_Nombre_EJECUTADO.ipynb`** — El mismo notebook ya **ejecutado de arriba hacia
-  abajo** con las salidas visibles (gráficas, tablas, asserts), usando un documento de prueba
-  (`1037123456` → SEED=3456, D=6). Sirve como referencia de que todo corre sin errores; para la
-  entrega real, ejecute la plantilla con *su* documento.
+  abajo** con las salidas visibles (gráficas, tablas, asserts), con **SEED=1357, D=7**. Sirve como
+  referencia de que todo corre sin errores.
 - **`datos_examen/`** — Archivos de datos del examen (YOLO, corpus, embeddings oficiales, etc.).
 
 ## Cómo ejecutar
@@ -32,14 +32,15 @@ Prof. Jorge Iván Padilla Buriticá). Resuelve las cuatro secciones del enunciad
    `faithfulness_cases.json` (el ítem vale máx. 3/5, según el enunciado).
 4. *Reiniciar y ejecutar todo.*
 
-## Resultados verificados (con el documento de prueba)
+## Resultados verificados (SEED=1357, D=7)
 
 - **A.1** `conv_out` coincide con `torch.nn.Conv2d` en 3 configuraciones; red de la Parte I = 1562
   parámetros (igual al cálculo a mano).
 - **A.2** Orden de desempeño: **pretrained (mAP50≈0.66) > freeze (≈0.56) ≫ scratch (≈0.01)**;
   freeze es el más rápido.
-- **A.3** IoU((2,2,6,6),(4,4,8,8)) = 0.1429; NMS por clase reduce las cajas; al subir conf de 0.25
-  a 0.50 la **precision sube** (≈0.80→0.87) y el **recall baja** (≈0.78→0.59).
+- **A.3** Subconjunto D=7 → imágenes `[1,4,7,10,13,16,19,22,25,28]`; IoU((2,2,6,6),(4,4,8,8))=0.1429;
+  NMS reduce 166→124 cajas; al subir conf de 0.25 a 0.50 la **precision sube** (≈0.84→0.92) y el
+  **recall baja** (≈0.74→0.64).
 - **B.1** La atención causal coincide con `F.scaled_dot_product_attention(..., is_causal=True)`; el
   ejemplo de la Parte I da pesos [0.665, 0.245, 0.090] y salida ≈[0.755, 0.335].
 - **B.2** La temperatura baja (0.2) agudiza la distribución (prob_top1≈0.99, entropía≈0.11); la alta
