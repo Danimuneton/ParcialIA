@@ -26,11 +26,11 @@ Prof. Jorge Iván Padilla Buriticá). Resuelve las cuatro secciones del enunciad
 
 1. Abra `Eval2_Apellido_Nombre.ipynb` (Colab o Jupyter local).
 2. Edite la celda de *Datos* con su nombre, documento y grupo.
-3. **Sección C.4 con LLM real (NVIDIA):** el notebook ya está configurado con `PROVEEDOR="nvidia"`.
-   Ponga su clave en la variable de entorno / Colab Secret **`NVIDIA_API_KEY`** (nunca en una celda).
-   La celda de *ping* confirma el modelo con `client.models.list()` y, si el nombre declarado en
-   `MODELO_CHAT` (por defecto `meta/llama-3.1-8b-instruct`) ya no está en el catálogo, elige
-   automáticamente uno de chat disponible. Si no hubiera clave, C.4 usa el respaldo
+3. **Sección C.4 con LLM real (NVIDIA):** el notebook ya está configurado con `PROVEEDOR="nvidia"` y
+   `MODELO_CHAT="nvidia/nemotron-3.5-bolt-e4b"`. Ponga su clave en la variable de entorno / Colab
+   Secret **`NVIDIA_API_KEY`** (nunca en una celda). La celda de *ping* prueba ese modelo con una
+   llamada real y, si su cuenta no tiene acceso (error 404) o no responde, recorre otros modelos de
+   chat del catálogo hasta encontrar uno que funcione. Si no hubiera clave, C.4 usa el respaldo
    `faithfulness_cases.json` (el ítem vale máx. 3/5, según el enunciado).
 4. *Reiniciar y ejecutar todo.*
 
