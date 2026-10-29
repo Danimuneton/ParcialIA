@@ -26,9 +26,11 @@ Prof. Jorge Iván Padilla Buriticá). Resuelve las cuatro secciones del enunciad
 
 1. Abra `Eval2_Apellido_Nombre.ipynb` (Colab o Jupyter local).
 2. Edite la celda de *Datos* con su nombre, documento y grupo.
-3. (Opcional) Para la Sección C.4 con un LLM real, configure una clave de proveedor
-   (`NVIDIA_API_KEY`, `GROQ_API_KEY` o `HF_TOKEN`) en Colab Secrets o variable de entorno, y ajuste
-   `PROVEEDOR`/`MODELO_CHAT`. Si no hay clave, C.4 usa automáticamente el respaldo
+3. **Sección C.4 con LLM real (NVIDIA):** el notebook ya está configurado con `PROVEEDOR="nvidia"`.
+   Ponga su clave en la variable de entorno / Colab Secret **`NVIDIA_API_KEY`** (nunca en una celda).
+   La celda de *ping* confirma el modelo con `client.models.list()` y, si el nombre declarado en
+   `MODELO_CHAT` (por defecto `meta/llama-3.1-8b-instruct`) ya no está en el catálogo, elige
+   automáticamente uno de chat disponible. Si no hubiera clave, C.4 usa el respaldo
    `faithfulness_cases.json` (el ítem vale máx. 3/5, según el enunciado).
 4. *Reiniciar y ejecutar todo.*
 
@@ -55,4 +57,5 @@ Prof. Jorge Iván Padilla Buriticá). Resuelve las cuatro secciones del enunciad
 - **C.4** Analiza faithfulness y el caso fuera del corpus (abstención vs. alucinación).
 
 > **Importante:** ninguna celda ni salida muestra una API key; las claves se leen con `get_secret()`
-> desde Colab Secrets o variables de entorno.
+> desde Colab Secrets o variables de entorno. Proveedor de chat configurado: **NVIDIA NIM**
+> (`NVIDIA_API_KEY`); embeddings: modelo oficial local (regla R3, chat y embeddings independientes).
